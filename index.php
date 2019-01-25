@@ -20,6 +20,9 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+$f3 = Base::instance();
+$f3->set('colors', array('pink', 'green', 'blue'));
+
 //Define a default route
 $f3->route('GET /', function() {
     echo"<h1>My Pets</h1>";
