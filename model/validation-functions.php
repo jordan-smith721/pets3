@@ -14,3 +14,12 @@ function validColor($color) {
     global $f3;
     return in_array($color, $f3->get('colors'));
 }
+
+function validString($string) {
+    if($string===""){
+        return false;
+    }else if (preg_match("/[a-z]/i", $string)){
+        return true;
+    } else
+        return true;
+}
