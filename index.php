@@ -31,7 +31,7 @@ $f3->route('GET /', function() {
     echo"<a href='order'>Order a pet</a>";
 });
 
-//Define a parameterized route
+/*//Define a parameterized route
 $f3->route('GET /@animal', function($f3, $params) {
     $animal = $params['animal'];
     $noise = '';
@@ -56,7 +56,7 @@ $f3->route('GET /@animal', function($f3, $params) {
     }
     echo"<h1>$noise!</h1>";
 });
-
+*/
 //Define a form1 route
 $f3->route('GET|POST /order', function($f3) {
     $_SESSION = array();
@@ -81,7 +81,6 @@ $f3->route('GET|POST /order', function($f3) {
 
 //Define a form2 route
 $f3->route('GET|POST /order2', function($f3) {
-    $_SESSION['animal'] = $_POST['animal'];
 
     if(isset($_POST['color']))
     {
@@ -102,8 +101,7 @@ $f3->route('GET|POST /order2', function($f3) {
 });
 
 //Define a results route
-$f3->route('POST /results', function() {
-    $_SESSION['color'] = $_POST['color'];
+$f3->route('GET|POST /results', function() {
     $template = new Template();
     echo $template->render('views/results.html');
 });

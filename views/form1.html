@@ -7,7 +7,10 @@
 <body>
 <form action="#" method="post" class="form-horizontal">
     <label>Animal
-    <input type="text" name="animal">
+        <check if="{{@errors['animal']}}">
+            <p>{{@errors['animal'] }}</p>
+        </check>
+        <input type="text" name="animal" value="{{ @_POST['animal'] }}">
     </label>
     <br>
     <button type="submit">Next</button>
