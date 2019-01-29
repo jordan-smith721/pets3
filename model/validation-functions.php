@@ -23,3 +23,4 @@ function validString($string) {
     } else
         return true;
 }
+echo "Hi!";
