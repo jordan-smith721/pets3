@@ -80,8 +80,23 @@ $f3->route('GET|POST /order', function($f3) {
 });
 
 //Define a form2 route
-$f3->route('GET|POST /order2', function() {
+$f3->route('GET|POST /order2', function($f3) {
     $_SESSION['animal'] = $_POST['animal'];
+
+    if(isset($_POST['color']))
+    {
+        $color = $_POST['color'];
+        if (validColor($color))
+        {
+            $_SESSION['color'] = $color;
+            $f3->reroute('results');
+        }
+        else
+        {
+            $f3->set("errors['color']", "Please choose a color.");
+        }
+    }
+
     $template = new Template();
     echo $template->render('views/form2.html');
 });
