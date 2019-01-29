@@ -23,10 +23,12 @@ $f3->set('DEBUG', 3);
 $f3 = Base::instance();
 $f3->set('colors', array('pink', 'green', 'blue'));
 
+require_once('model/validation-functions.php');
+
 //Define a default route
 $f3->route('GET /', function() {
     echo"<h1>My Pets</h1>";
-    echo"<a href='order'>Order a Pet</a>";
+    echo"<a href='order'>Order a pet</a>";
 });
 
 //Define a parameterized route
@@ -56,7 +58,23 @@ $f3->route('GET /@animal', function($f3, $params) {
 });
 
 //Define a form1 route
-$f3->route('GET|POST /order', function() {
+$f3->route('GET|POST /order', function($f3) {
+    $_SESSION = array();
+
+    if(isset($_POST['animal']))
+    {
+        $animal = $_POST['animal'];
+        if (validString($animal))
+        {
+            $_SESSION['animal'] = $animal;
+            $f3->reroute('order2');
+        }
+        else
+        {
+            $f3->set("errors['animal']", "Please enter an animal.");
+        }
+    }
+
     $template = new Template();
     echo $template->render('views/form1.html');
 });

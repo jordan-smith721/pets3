@@ -21,6 +21,5 @@ function validString($string) {
     }else if (preg_match("/[a-z]/i", $string)){
         return true;
     } else
-        return true;
+        return false;
 }
-echo "Hi!";
